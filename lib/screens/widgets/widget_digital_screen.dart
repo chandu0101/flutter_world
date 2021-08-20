@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_world/screens/widgets/animated_align_screen.dart';
 import 'package:flutter_world/screens/widgets/animated_builder_screen.dart';
+import 'package:flutter_world/screens/widgets/animated_container_screen.dart';
 import 'package:flutter_world/utils/utils.dart';
 
 class WidgetDetails extends StatelessWidget {
@@ -14,6 +15,8 @@ class WidgetDetails extends StatelessWidget {
         return AnimatedAlignScreen();
       case WidgetNames.AnimatedBuilder:
         return AnimatedBuilderScreen();
+      case WidgetNames.AnimatedContainer:
+        return AnimatedContainerScreen();
       default:
         return Center(
           child: Text("Selected widget ${name}"),

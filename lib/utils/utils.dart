@@ -16,6 +16,7 @@ abstract class FlutterWorldUtils {
 abstract class WidgetNames {
   static const AnimatedAlign = "Animated Align";
   static const AnimatedBuilder = "Animated Builder";
+  static const AnimatedContainer = "Animated Container";
 }
 
 abstract class TipsNames {
