@@ -69,8 +69,8 @@ class DesktopNav extends StatelessWidget {
           ListTile(
             selected: path == "/tips" || path.startsWith("/tip/"),
             onTap: () {
-              context.dispatch(NavActions.widgets(
-                  navOptions: NavOptions(blockSameUrl: true)));
+              context.dispatch(
+                  NavActions.tips(navOptions: NavOptions(blockSameUrl: true)));
             },
             title: Text("Tips"),
           ),

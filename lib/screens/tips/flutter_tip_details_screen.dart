@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_world/screens/tips/state_less_state_full_template.dart';
 import 'package:flutter_world/utils/utils.dart';
 
 class FlutterTipDetailsScreen extends StatelessWidget {
@@ -8,12 +9,13 @@ class FlutterTipDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    switch(name) {
-      case TipsNames.STLESS_STFUL: 
-        return
-      default: 
-         return Center(child: Text("Tip Details"),)
+    switch (name) {
+      case TipsNames.STLESS_STFUL:
+        return StateLessStateFul();
+      default:
+        return Center(
+          child: Text("Tip Details"),
+        );
     }
-    
   }
 }
