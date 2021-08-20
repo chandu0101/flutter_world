@@ -225,6 +225,38 @@ dynamic Nav_SyncReducer(dynamic _DStoreState, Action _DstoreAction) {
         return newState;
       }
 
+    case "tips":
+      {
+        final _DstoreActionPayload = _DstoreAction.payload!;
+        var _DStore_page = _DStoreState.page;
+        _DStore_page = MaterialPage(key: ValueKey("tips"), child: TipsScreen());
+        var newState =
+            _DStoreState.copyWith(page: _DStore_page, meta: NavConfigMeta());
+
+        newState.dontTouchMe = _DStoreState.dontTouchMe;
+        newState.dontTouchMe.url = '/tips';
+
+        return newState;
+      }
+
+    case "tipDetails":
+      {
+        final _DstoreActionPayload = _DstoreAction.payload!;
+        final name = _DstoreActionPayload["name"] as String;
+
+        var _DStore_page = _DStoreState.page;
+        _DStore_page = MaterialPage(
+            child: FlutterTipDetailsScreen(name: name),
+            key: ValueKey("Tip$name"));
+        var newState =
+            _DStoreState.copyWith(page: _DStore_page, meta: NavConfigMeta());
+
+        newState.dontTouchMe = _DStoreState.dontTouchMe;
+        newState.dontTouchMe.url = '/tip/$name';
+
+        return newState;
+      }
+
     case "notFound":
       {
         final _DstoreActionPayload = _DstoreAction.payload!;
@@ -286,6 +318,12 @@ Nav Nav_DS() {
         },
         url: '/widgets',
         isProtected: false),
+    '/tips': NavUrlMeta(
+        urlToAction: (Uri uri, Dispatch dispatch) {
+          return dispatch(NavActions.tips());
+        },
+        url: '/tips',
+        isProtected: false),
     '/notfound': NavUrlMeta(
         urlToAction: (Uri uri, Dispatch dispatch) {
           return dispatch(NavActions.notFound());
@@ -303,6 +341,17 @@ Nav Nav_DS() {
           final match = regExp.matchAsPrefix(path);
           final params = extract(parameters, match!);
           return dispatch(NavActions.widgetDetails(name: params['name']!));
+        },
+        isProtected: false),
+    '/tip/:name': NavUrlMeta(
+        url: '/tip/:name',
+        urlToAction: (Uri uri, Dispatch dispatch) {
+          final path = uri.path;
+          final parameters = <String>[];
+          final regExp = pathToRegExp('/tip/:name', parameters: parameters);
+          final match = regExp.matchAsPrefix(path);
+          final params = extract(parameters, match!);
+          return dispatch(NavActions.tipDetails(name: params['name']!));
         },
         isProtected: false)
   };
@@ -371,6 +420,29 @@ abstract class NavActions {
             navOptions: navOptions,
             rawUrl: '/widget/:name',
             isProtected: false),
+        type: _Nav_FullPath,
+        payload: <String, dynamic>{"name": name},
+        isAsync: false);
+  }
+
+  static Action<dynamic> tips({bool silent = false, NavOptions? navOptions}) {
+    return Action<dynamic>(
+        name: "tips",
+        silent: silent,
+        nav: NavPayload(
+            navOptions: navOptions, rawUrl: '/tips', isProtected: false),
+        type: _Nav_FullPath,
+        payload: <String, dynamic>{},
+        isAsync: false);
+  }
+
+  static Action<dynamic> tipDetails(
+      {required String name, bool silent = false, NavOptions? navOptions}) {
+    return Action<dynamic>(
+        name: "tipDetails",
+        silent: silent,
+        nav: NavPayload(
+            navOptions: navOptions, rawUrl: '/tip/:name', isProtected: false),
         type: _Nav_FullPath,
         payload: <String, dynamic>{"name": name},
         isAsync: false);

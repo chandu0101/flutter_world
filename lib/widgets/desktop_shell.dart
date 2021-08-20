@@ -66,6 +66,14 @@ class DesktopNav extends StatelessWidget {
             },
             title: Text("Widgets"),
           ),
+          ListTile(
+            selected: path == "/tips" || path.startsWith("/tip/"),
+            onTap: () {
+              context.dispatch(NavActions.widgets(
+                  navOptions: NavOptions(blockSameUrl: true)));
+            },
+            title: Text("Tips"),
+          ),
         ]);
       },
     );

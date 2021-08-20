@@ -20,6 +20,13 @@ class WidgetsScreen extends StatelessWidget {
                     NavActions.widgetDetails(name: WidgetNames.AnimatedAlign));
               },
               title: Text("Animated Alighn"),
+            ),
+            ListTile(
+              onTap: () {
+                context.dispatch(NavActions.widgetDetails(
+                    name: WidgetNames.AnimatedBuilder));
+              },
+              title: Text("Animated Builder"),
             )
           ],
         ));

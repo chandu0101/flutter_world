@@ -4,6 +4,8 @@ import 'package:flutter/material.dart' hide Action;
 import 'package:flutter_world/screens/github_screen.dart';
 import 'package:flutter_world/screens/home_screen.dart';
 import 'package:flutter_world/screens/reddit_screen.dart';
+import 'package:flutter_world/screens/tips/flutter_tip_details_screen.dart';
+import 'package:flutter_world/screens/tips/flutter_tips_screen.dart';
 import 'package:flutter_world/screens/unknown_screen.dart';
 import 'package:flutter_world/screens/widgets/widget_digital_screen.dart';
 import 'package:flutter_world/screens/widgets_screen.dart';
@@ -36,6 +38,17 @@ class $_Nav extends NavStateI {
   void widgetDetails(String name) {
     this.page = MaterialPage(
         child: WidgetDetails(name: name), key: ValueKey("widgets$name"));
+  }
+
+  @Url("/tips")
+  void tips() {
+    this.page = MaterialPage(key: ValueKey("tips"), child: TipsScreen());
+  }
+
+  @Url("/tip/:name")
+  void tipDetails(String name) {
+    this.page = MaterialPage(
+        child: FlutterTipDetailsScreen(name: name), key: ValueKey("Tip$name"));
   }
 
   @Url("/notfound")

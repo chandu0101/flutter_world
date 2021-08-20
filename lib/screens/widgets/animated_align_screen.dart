@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_world/screens/widgets/widget_digital_screen.dart';
 import 'package:flutter_world/utils/utils.dart';
+import 'package:flutter_world/widgets/link.dart';
 
 class AnimatedAlignScreen extends StatefulWidget {
   const AnimatedAlignScreen({Key? key}) : super(key: key);
@@ -23,7 +24,8 @@ class _AnimatedAlignScreenState extends State<AnimatedAlignScreen> {
           ),
           Center(child: WidgetTitle(name: "Animated Align")),
           Center(
-            child: WidgetDocs(
+            child: Link(
+                text: "Docs Page",
                 url:
                     "https://api.flutter.dev/flutter/widgets/AnimatedAlign-class.html"),
           ),
